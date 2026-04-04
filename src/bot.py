@@ -1,4 +1,5 @@
 import logging
+import json
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from utils import *
@@ -67,6 +68,9 @@ async def register_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     await update.message.reply_text(f"Joined existing team: '{team_name}'.")
         
     user_to_team[user_id] = team_name
+    
+    # Log the current state for recovery
+    logger.info(f"[STATE BACKUP] teams={json.dumps(teams)} user_to_team={json.dumps(user_to_team)}")
 
 async def myteam_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Display a detailed summary of the user's team."""
@@ -126,6 +130,9 @@ async def submit_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             # Award points
             teams[team_name]["solved_challenges"].append(submitted_flag)
             teams[team_name]["score"] += challenge["points"]
+            
+            # Log the current state for recovery
+            logger.info(f"[STATE BACKUP] teams={json.dumps(teams)} user_to_team={json.dumps(user_to_team)}")
             
             await update.message.reply_text(
                 f"✅ Correct! Flag accepted for '{challenge['name']}'.\n"
