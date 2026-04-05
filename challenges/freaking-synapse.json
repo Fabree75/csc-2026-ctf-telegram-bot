@@ -1,0 +1,12 @@
+{
+  "title": "Freaking Synapse",
+  "description": "Synapse. Ohhh Synapse. The tool designed to make you cry. But what if you had the chance to download the patch to fix it?",
+  "points": 20,
+  "flags": [
+    "egg{four_lists}"
+  ],
+  "unlocks": [
+  ],
+  "has_service": true,
+  "service_port": 8888
+}

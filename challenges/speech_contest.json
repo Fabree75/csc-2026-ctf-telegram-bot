@@ -1,14 +1,14 @@
 {
   "title": "Speech Contest",
-  "description": "I think Bart started learning python. Found these on his computer.\nHe used `cypher.py` to encrypt a secret message. Can you find what it says?",
-  "points": 100,
+  "description": "I think Bart started learning python. \nHe used `cypher.py` to encrypt a secret message. Can you find what it says?",
+  "points": 10,
   "flags": [
     "egg{l4st_n1ght_1_h4d_a_dr34m}",
     "egg{last_n1gh!_1_h4d_4_dr34m}",
     "egg{l4s!_n1ght_d_h4d_a_1r34m}"
   ],
   "unlocks": [
-    "mystery_lab_machine"
+    "mystery_program"
   ],
   "has_files": true
 }

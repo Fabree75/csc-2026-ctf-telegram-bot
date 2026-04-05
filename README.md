@@ -22,10 +22,7 @@
    - You can also configure the CTF challenges, points, and available teams directly in `src/utils.py`.
 
 3. **Run the Bot**:
-   First set the environment variables (replace with apropriate values):
-   ```bash
-   export TELEGRAM_BOT_TOKEN=<token> VPS_IP=51.20.182.165
-   ```
+   First set the configs in `config.yml`.
    Then, in the same shell, start the bot by running the following command from the root of the project:
    ```bash
    python src/bot.py

@@ -1,0 +1,6 @@
+# Telegram Bot Credentials
+BOT_TOKEN: "<token>"
+
+# Infrastructure IPs
+VPS_IP: "51.20.182.165"
+SERVICE_IP: "16.170.237.35"

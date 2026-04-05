@@ -1,12 +1,11 @@
 {
   "title": "Warmup 2",
   "description": "Can you find the second flag hidden in the binary?",
-  "points": 20,
+  "points": 5,
   "flags": [
     "egg{yahah_you_found_me}"
   ],
   "unlocks": [
     "speech_contest"
-  ],
-  "has_files": false
+  ]
 }

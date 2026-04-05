@@ -1,8 +1,7 @@
 import json
 import os
 from pathlib import Path
-
-from constants import VPS_IP
+from config_loader import get_live_ips
 
 class Challenge:
     '''
@@ -27,20 +26,31 @@ class Challenge:
         self.flags = data.get("flags", [])
         self.unlocks = data.get("unlocks", []) # List of IDs
         self.has_files = data.get("has_files", False)
+        self.has_service = data.get("has_service", False)
+        self.service_port = data.get("service_port", None)
 
     def format_message(self):
         """Formats the challenge text for Telegram."""
+        current_ips = get_live_ips()
+        vps_ip = current_ips.get("VPS_IP")
+        service_ip = current_ips.get("SERVICE_IP")
+
         msg = f"<b>{self.title}</b> ({self.points} pts)\n\n"
         msg += f"<i>{self.description}</i>\n\n"
+        
+        # 1. Use SERVICE_IP for netcat connections
+        if self.has_service:
+            msg += "🌐 <b>Connect:</b>\n"
+            msg += f"paste <code>http://{service_ip}:{self.service_port}</code> into your browser\n"
+            msg += f"or <code>nc {service_ip} {self.service_port}</code>\n\n"
+            
+
+        # 2. Use VPS_IP for file downloads (Nginx)
         if self.has_files:
-            # Pointing to the .tar.gz we generate with your shell script
-            msg += "📦 <b>Challenge Files:</b>\n"
-            
-            url = f"http://{VPS_IP}/dist/{self.id}.tar.gz"
-            cmd = (
-                f"mkdir -p {self.id} && "
-                f"curl -L {url} | tar -xz -C {self.id}"
-            )
-            
-            msg += f"<code>{cmd}</code>"
+            file_url = f"http://{vps_ip}/dist/{self.id}.tar.gz"
+            msg += "📦 <b>Files:</b>\n"
+            # Using the improved folder-naming command
+            cmd = f"mkdir -p {self.id} && curl -L {file_url} | tar -xz -C {self.id}"
+            msg += f"<code>{cmd}</code>\n"
+
         return msg

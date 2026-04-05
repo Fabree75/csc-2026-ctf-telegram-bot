@@ -2,7 +2,10 @@ import logging
 import json
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+
+from config_loader import load_config
 from utils import * # This should now include your Challenge and Team class definitions
+
 
 # Enable logging
 logging.basicConfig(
@@ -31,6 +34,8 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         "🏆 Welcome to the 2026 CTF Bot! 🏆\n\n"
         "Here are the commands you can use:\n"
         "/teams - View registered teams\n"
+        "/signup <team_name> - Create a new team\n"
+        "/join <team_id> - Join an existing team\n"
         "/challenges - View your currently unlocked challenges\n"
         "/myteam - View your team's progress\n"
         "/submit <flag> - Submit a flag for points\n"
@@ -53,6 +58,36 @@ async def teams_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         teams_list += f"  Members: {len(team.member_ids)}/3\n\n"
         
     await update.message.reply_text(teams_list, parse_mode='Markdown')
+
+async def signup_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Register a new team."""
+    user_id = update.effective_user.id
+    
+    # 1. Check if user is already in a team
+    if user_id in USER_TO_TEAM:
+        await update.message.reply_text("❌ You are already in a team! Use /myteam to see details.")
+        return
+
+    # 2. Ensure they provided a name
+    if not context.args:
+        await update.message.reply_text("Usage: `/signup <team_name>`", parse_mode='Markdown')
+        return
+
+    team_name = " ".join(context.args)
+    
+    # 3. Create the team using the logic from utils.py
+    new_team = signup_team(team_name, user_id)
+    
+    # 4. Update the global RAM lookups
+    TEAMS[new_team.team_id] = new_team
+    USER_TO_TEAM[user_id] = new_team.team_id
+    
+    response = (
+        f"🎉 **Team '{team_name}' created successfully!**\n\n"
+        f"🆔 Your Team ID is: `{new_team.team_id}`\n"
+        f"Share this ID with up to 2 friends so they can `/join` you!"
+    )
+    await update.message.reply_text(response, parse_mode='Markdown')
 
 async def join_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Allow a user to join a team using its ID."""
@@ -194,14 +229,18 @@ async def log_all_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -
 # --- Main ---
 
 def main() -> None:
-    # Ensure folders exist
-    TEAMS_DIR.mkdir(exist_ok=True)
+    config = load_config()
+    token = config.get("BOT_TOKEN")
+
+    if not token:
+        print("❌ No BOT_TOKEN found in config.yml. Exiting.")
+        return
     
     # Initialize the data
     load_all_teams() # Loads TEAMS and USER_TO_TEAM from the teams directory JSON files
     load_all_challenges() # Loads CHALLENGES from the challenges directory JSON files
     
-    application = Application.builder().token(TOKEN).build()
+    application = Application.builder().token(token).build()
 
     # Middleware-style logging
     application.add_handler(MessageHandler(filters.TEXT | filters.COMMAND, log_all_messages), group=-1)
@@ -209,6 +248,7 @@ def main() -> None:
     # Handlers
     application.add_handler(CommandHandler("start", start_command))
     application.add_handler(CommandHandler("teams", teams_command))
+    application.add_handler(CommandHandler("signup", signup_command))
     application.add_handler(CommandHandler("join", join_command))
     application.add_handler(CommandHandler("challenges", challenges_command))
     application.add_handler(CommandHandler("myteam", myteam_command))
