@@ -1,0 +1,12 @@
+{
+  "title": "Warmup @",
+  "description": "We recommend installing wsl on Windows or connecting to a lab machine using `ssh name.lastname@ferrari.polytechnique.fr`.",
+  "points": 10,
+  "flags": [
+    "egg{strings_objdump_and_grep_are_handy_commands}"
+  ],
+  "unlocks": [
+    "warmup2"
+  ],
+  "has_files": true
+}

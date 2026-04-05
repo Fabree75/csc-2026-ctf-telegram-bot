@@ -22,15 +22,39 @@
    - You can also configure the CTF challenges, points, and available teams directly in `src/utils.py`.
 
 3. **Run the Bot**:
-   Start the bot by running the following command from the root of the project:
+   First set the environment variables (replace with apropriate values):
+   ```bash
+   export TELEGRAM_BOT_TOKEN=<token> VPS_IP=51.20.182.165
+   ```
+   Then, in the same shell, start the bot by running the following command from the root of the project:
    ```bash
    python src/bot.py
    ```
 
 ## Bot Commands
-- `/start` - Welcome message and command list
-- `/teams` - View available teams to join
-- `/register <team_name>` - Join an existing team (max 3 members)
-- `/myteam` - View your team's detailed summary and solved challenges
-- `/submit <flag>` - Submit a flag for points (format: `egg{flag_text}` or just `flag_text`)
-- `/score` - View the current CTF scoreboard
+
+* **/start**
+    Displays the welcome message and this command list.
+
+* **/teams**
+    View all available teams. This shows the **Team Name**, current **Member Count**, and the unique **Team ID** required to join.
+
+* **/join `<team_id>`**
+    Join a team using its unique identifier.
+    *Example:* `/join team_1_a7b2c9`
+    > **Note:** Teams are limited to 3 members. You cannot join a team if you are already registered in one.
+
+* **/challenges**
+    List all currently **unlocked** challenges for your team. This includes:
+    * Challenge descriptions and point values.
+    * `curl` commands to download files directly into organized folders.
+
+* **/myteam**
+    View your team's private summary, including total score and a list of solved challenges.
+
+* **/submit `<flag>`**
+    Submit a flag for points. The bot automatically checks your input against all of your team's active challenges.
+    *Example:* `/submit egg{flag_text}` or `/submit flag_text`
+
+* **/score**
+    View the global live scoreboard to see current rankings.
