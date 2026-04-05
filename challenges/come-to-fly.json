@@ -6,5 +6,9 @@
     "egg{poincare_has_been_climbed_by_bachelors}"
   ],
   "unlocks": [
+    "ml-lab",
+    "freaking-synapse",
+    "comparch_paradise",
+    "suspicious-capybara"
   ]
 }
