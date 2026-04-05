@@ -1,6 +1,6 @@
 {
   "title": "CompArch Paradise",
-  "description": "Welcome to the paradise of any computer architecture lover! You have found a very old binary file that can be executed locally on your Linux machine, if you so dare! Since it is very old it might contain dangerous bugs that destroy everything. Happily, you can also execute it on a remote server...",
+  "description": "Welcome to the paradise of any computer architecture lover! You have found a very old binary file that can be executed locally on your Linux machine, if you so dare! Since it is very old it might contain dangerous bugs that destroy everything. Happily, you can also execute it on a remote server...\nauthor: @utukaita",
   "points": 40,
   "flags": [
     "egg{BX<3prof_Bourke}"

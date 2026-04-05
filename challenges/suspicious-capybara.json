@@ -1,6 +1,6 @@
 {
   "title": "Suspicious Capybara",
-  "description": "You see this picture in social media with the following caption:\n\n'Feeling cozy and productive tonight💻🎧'\n\nYou do not know who the author of the photo is (from now on we will refer to him as 'the author'). Your objective is to submit a flag with the format `egg{part1_part2_part3}`, where:\n- `part1` corresponds to the API key of one the author's coding projects\n- `part2` corresponds to the name of the author's dog\n- `part3` corresponds to the name of the country where the author spent New Year's Eve in\n\nAll letters in the submitted flag must be lowercase, and the different parts are separated by an underscore, as shown above.",
+  "description": "You see this picture in social media with the following caption:\n\n'Feeling cozy and productive tonight💻🎧'\n\nYou do not know who the author of the photo is (from now on we will refer to him as 'the author'). Your objective is to submit a flag with the format `egg{part1_part2_part3}`, where:\n- `part1` corresponds to the API key of one the author's coding projects\n- `part2` corresponds to the name of the author's dog\n- `part3` corresponds to the name of the country where the author spent New Year's Eve in\n\nAll letters in the submitted flag must be lowercase, and the different parts are separated by an underscore, as shown above.\nauthor: @angelitoo75",
   "points": 40,
   "flags": [
     "egg{c4pyb4r4s_pepper_vietnam}"

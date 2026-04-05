@@ -1,6 +1,6 @@
 {
   "title": "Speech Contest",
-  "description": "I think Bart started learning python. \nHe used `cypher.py` to encrypt a secret message. Can you find what it says?",
+  "description": "I think Bart started learning python. \nHe used `cypher.py` to encrypt a secret message. Can you find what it says?\nauthor: @luxinmat",
   "points": 10,
   "flags": [
     "egg{l4st_n1ght_1_h4d_a_dr34m}",

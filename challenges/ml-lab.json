@@ -1,6 +1,6 @@
 {
   "title": "ML Lab",
-  "description": "We are testing out a new garding system for CSC_2S004_EP - Machine Learning labs.\nYou can acess it at the given address.\nAlso, here is the code runing in the backend, something in app.py seems off.",
+  "description": "We are testing out a new garding system for CSC_2S004_EP - Machine Learning labs.\nYou can acess it at the given address.\nAlso, here is the code runing in the backend, something in app.py seems off.\nauthor: @luxinmat",
   "points": 40,
   "flags": [
     "egg{d0nt_unp1ckl3_fr0m_untru5t3d_5ourc35}"

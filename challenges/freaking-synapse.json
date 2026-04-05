@@ -1,6 +1,6 @@
 {
   "title": "Freaking Synapse",
-  "description": "Synapse. Ohhh Synapse. The tool designed to make you cry. But what if you had the chance to download the patch to fix it?",
+  "description": "Synapse. Ohhh Synapse. The tool designed to make you cry. But what if you had the chance to download the patch to fix it?\nauthor: @anmabe06",
   "points": 20,
   "flags": [
     "egg{four_lists}"

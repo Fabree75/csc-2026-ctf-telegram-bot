@@ -1,6 +1,6 @@
 {
   "title": "Mystery",
-  "description": "What is this mystery program and what could be the flag it's asking for? Run it on your M{1-4} Mac or Linux machine and find out!\n\nIf you still can't tell much, be like the US National Security Agency (NSA) and look at their Github. Their most liked project, Ghidra, is a tool to decompile executables to find the original C code. The easiest way to get Ghidra is to download the zip file containing the most recent release that can be found on Github. It's a Java program that can be run device agnostically provided you have a recent version of Java installed.",
+  "description": "What is this mystery program and what could be the flag it's asking for? Run it on your M{1-4} Mac or Linux machine and find out!\n\nIf you still can't tell much, be like the US National Security Agency (NSA) and look at their Github. Their most liked project, Ghidra, is a tool to decompile executables to find the original C code. The easiest way to get Ghidra is to download the zip file containing the most recent release that can be found on Github. It's a Java program that can be run device agnostically provided you have a recent version of Java installed.\nauthor: @utukaita",
   "points": 20,
   "flags": [
     "egg{0}"
