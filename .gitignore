@@ -9,8 +9,5 @@ wheels/
 # Virtual environments
 .venv
 
-# Secret constants
-utils.py
-
 # Bot logs
 ctf_bot_chat.log
