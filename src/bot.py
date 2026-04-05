@@ -153,6 +153,16 @@ async def myteam_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     await update.message.reply_text(summary, parse_mode='HTML')
 
 async def submit_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if context.args and context.args[0].strip().lower() == "ctf{egg_hunt}":
+        msg = "🥚 Secret Easter Egg accepted! 🥚\n\n"
+        msg += "For one of the prizes last year, we\n"
+        msg += "ordered a proxmark off amazon\n"
+        msg += "yet we haven't had many occasions to use it\n"
+        msg += "even so we really wanted to make a\n"
+        msg += "riddle out of it."
+        await update.message.reply_text(msg)
+        return
+    
     team = get_team(update.effective_user.id)
     if not team:
         await update.message.reply_text("Register to a team first!")
@@ -161,9 +171,9 @@ async def submit_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     if not context.args:
         await update.message.reply_text("Usage: <code>/submit &lt;flag&gt;</code>", parse_mode='HTML')
         return
-        
+
     submitted_flag = context.args[0].strip()
-    
+
     for chall_id in list(team.active_challenges):
         challenge = CHALLENGES.get(chall_id)
         if challenge and submitted_flag in challenge.flags:
